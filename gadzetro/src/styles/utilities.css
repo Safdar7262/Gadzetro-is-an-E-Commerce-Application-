@@ -1,0 +1,63 @@
+.page { padding-block: 40px; }
+.page-title { font-size: 1.8rem; font-weight: 800; margin-bottom: 16px; }
+.muted { color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; margin-bottom: 24px; }
+
+/* Buttons */
+.ui-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; border: 2px solid transparent; font-weight: 600; transition: 0.2s; text-decoration: none; }
+.ui-btn-sm { padding: 6px 16px; font-size: 0.85rem; }
+.ui-btn-md { padding: 10px 24px; }
+.ui-btn-lg { padding: 14px 32px; font-size: 1.05rem; }
+.ui-btn-primary { background: var(--blue); color: #fff; }
+.ui-btn-primary:hover:not(:disabled) { background: var(--blue-dark); transform: translateY(-1px); }
+.ui-btn-outline { border-color: var(--blue); color: var(--blue); background: #fff; }
+.ui-btn-outline:hover:not(:disabled) { background: var(--blue); color: #fff; }
+.ui-btn-ghost { background: transparent; color: var(--text); }
+.ui-btn-ghost:hover:not(:disabled) { background: var(--bg); }
+.ui-btn-danger { background: var(--danger); color: #fff; }
+.ui-btn-danger:hover:not(:disabled) { background: #b91c1c; }
+.ui-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.ui-icon-btn { background: none; border: 0; padding: 8px; border-radius: 8px; font-size: 1.3rem; display: grid; place-items: center; }
+.ui-icon-btn:hover { background: var(--bg); }
+
+/* Spinner + loader */
+.ui-spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: ui-spin 0.8s linear infinite; }
+.ui-spinner.small { width: 16px; height: 16px; border-width: 2px; border-color: rgba(255, 255, 255, 0.4); border-top-color: #fff; }
+.ui-loader { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 32px; color: var(--muted); }
+.ui-loader.full { min-height: 60vh; }
+@keyframes ui-spin { to { transform: rotate(360deg); } }
+
+/* Form field */
+.ui-field { display: grid; gap: 6px; min-width: 240px; flex: 1; }
+.ui-field label { font-weight: 600; font-size: 0.9rem; }
+.ui-field input { padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 10px; background: #fff; }
+.ui-field input:focus { outline: none; border-color: var(--blue); box-shadow: var(--focus-ring); }
+.ui-field.has-error input { border-color: var(--danger); }
+.ui-field-error { color: var(--danger); font-size: 0.85rem; }
+.ui-field-hint { color: var(--muted); font-size: 0.85rem; }
+
+/* Modal */
+.ui-modal-backdrop { position: fixed; inset: 0; z-index: 100; background: rgba(10, 18, 38, 0.55); display: grid; place-items: center; padding: 16px; }
+.ui-modal { background: #fff; border-radius: var(--radius); width: min(480px, 100%); max-height: 90vh; overflow: auto; box-shadow: var(--shadow-lg); }
+.ui-modal header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.ui-modal h2 { font-size: 1.15rem; }
+.ui-modal-body { padding: 20px; }
+.ui-modal footer { display: flex; justify-content: flex-end; gap: 10px; padding: 14px 20px; border-top: 1px solid var(--border); }
+
+/* Pagination */
+.ui-pagination { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 24px 0; }
+.ui-pagination button { min-width: 38px; height: 38px; padding: 0 10px; border: 1px solid var(--border); background: #fff; border-radius: 10px; font-weight: 600; display: grid; place-items: center; }
+.ui-pagination button:hover:not(:disabled) { border-color: var(--blue); color: var(--blue); }
+.ui-pagination button.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.ui-pagination button:disabled { opacity: 0.4; cursor: not-allowed; }
+.ui-pagination .gap { align-self: center; padding: 0 4px; color: var(--muted); }
+
+/* Rating */
+.ui-rating { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; }
+.ui-stars { display: inline-flex; gap: 2px; color: #f59e0b; }
+.ui-rating-count { color: var(--muted); }
+
+/* Empty state */
+.ui-empty { background: var(--bg); border-radius: var(--radius); padding: 48px 20px; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.ui-empty-icon { font-size: 2.6rem; color: var(--blue); }
+.ui-empty p { color: var(--muted); max-width: 46ch; }

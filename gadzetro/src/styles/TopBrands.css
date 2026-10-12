@@ -1,0 +1,45 @@
+.brand-marquee {
+  overflow: hidden;
+  padding: 10px 0 18px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+.brand-track {
+  display: flex;
+  width: max-content;
+  animation: brand-scroll 28s linear infinite;
+}
+.brand-marquee:hover .brand-track { animation-play-state: paused; }
+
+.brand-item {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 90px;
+  margin-right: 18px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+}
+.brand-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: currentColor; }
+
+@keyframes brand-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 600px) {
+  .brand-item { width: 150px; height: 72px; font-size: 1.2rem; }
+  .brand-track { animation-duration: 22s; }
+}
+
+/* Jin users ne device me "reduce motion" on rakha hai unke liye animation band */
+@media (prefers-reduced-motion: reduce) {
+  .brand-marquee { overflow-x: auto; }
+  .brand-track { animation: none; }
+}

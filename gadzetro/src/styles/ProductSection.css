@@ -1,0 +1,6 @@
+.product-section { background: var(--bg); }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.reset-btn { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; font-weight: 600; font-size: 0.85rem; margin-bottom: 24px; }
+.reset-btn:hover { border-color: var(--blue); color: var(--blue); }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
+.empty-state { background: #fff; border-radius: var(--radius); padding: 48px 20px; text-align: center; display: grid; gap: 16px; justify-items: center; color: var(--muted); font-size: 1.05rem; }

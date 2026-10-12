@@ -1,0 +1,10 @@
+.promo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; padding: 56px 0; }
+.promo-banner { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-radius: 18px; padding: 28px; min-height: 220px; overflow: hidden; transition: 0.25s; }
+.promo-banner:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.promo-text { flex: 1; display: grid; gap: 10px; justify-items: start; }
+.promo-text h3 { font-size: 1.4rem; line-height: 1.25; color: var(--navy); }
+.promo-text p { color: var(--muted); margin-bottom: 6px; }
+.promo-banner img { width: 42%; max-height: 180px; object-fit: contain; border-radius: 12px; transition: transform 0.3s; }
+.promo-banner:hover img { transform: scale(1.05); }
+@media (max-width: 800px) { .promo-grid { grid-template-columns: 1fr; padding: 40px 0; } }
+@media (max-width: 420px) { .promo-banner { flex-direction: column-reverse; align-items: flex-start; } .promo-banner img { width: 100%; } }

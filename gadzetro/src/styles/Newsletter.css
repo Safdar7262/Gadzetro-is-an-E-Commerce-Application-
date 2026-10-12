@@ -1,0 +1,9 @@
+.newsletter { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 64px 0; text-align: center; }
+.newsletter h2 { font-size: 2rem; margin-bottom: 8px; }
+.newsletter-inner > p { color: #c3cde6; max-width: 56ch; margin: 0 auto 24px; }
+.newsletter form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.newsletter input { flex: 1 1 280px; max-width: 420px; padding: 12px 20px; border-radius: 999px; border: 2px solid transparent; background: #fff; color: var(--text); }
+.newsletter input:focus { outline: none; border-color: var(--blue); }
+.form-message { min-height: 1.5em; margin-top: 14px; font-weight: 600; }
+.form-message.success { color: #6ee7a0; }
+.form-message.error { color: #ff9b9b; }

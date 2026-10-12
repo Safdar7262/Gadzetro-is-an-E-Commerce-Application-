@@ -1,0 +1,9 @@
+/* Extra design tokens for the new pages. Core colours live in global.css. */
+:root {
+  --success: #15803d;
+  --danger: #dc2626;
+  --warning: #b45309;
+  --admin-bg: #f1f4f9;
+  --sidebar-width: 250px;
+  --focus-ring: 0 0 0 3px rgba(30, 107, 255, 0.25);
+}

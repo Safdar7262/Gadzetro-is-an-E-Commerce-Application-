@@ -1,0 +1,9 @@
+.benefits { background: var(--bg); border-block: 1px solid var(--border); padding: 28px 0; }
+.benefits-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.benefits-grid li { display: flex; align-items: center; gap: 12px; }
+.benefit-icon { flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; background: #e6efff; color: var(--blue); display: grid; place-items: center; font-size: 1.3rem; }
+.benefits-grid h3 { font-size: 0.98rem; }
+.benefits-grid p { font-size: 0.85rem; color: var(--muted); }
+@media (max-width: 1000px) { .benefits-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .benefits-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 400px) { .benefits-grid { grid-template-columns: 1fr; } }
