@@ -62,12 +62,12 @@
 .success address { font-style: normal; line-height: 1.6; }
 
 @media (max-width: 900px) {
-  .cart-layout { grid-template-columns: 1fr; }
+  .cart-layout { grid-template-columns: minmax(0, 1fr); }
   .summary { position: static; }
   .success-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
-  .cart-item { grid-template-columns: 80px 1fr; }
+  .cart-item { grid-template-columns: 80px minmax(0, 1fr); }
   .cart-item-side { grid-column: 1 / -1; grid-auto-flow: column; justify-content: space-between; align-items: center; }
   .form-grid { grid-template-columns: 1fr; }
   .saved-item { grid-template-columns: 56px 1fr; }

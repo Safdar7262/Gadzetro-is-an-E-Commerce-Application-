@@ -1,11 +1,13 @@
 import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FiGrid, FiMoreHorizontal } from 'react-icons/fi'
 import { categories } from '../data/categories.js'
 import '../styles/CategoriesSection.css'
 
 const PLACEHOLDER = '/images/placeholder.svg'
 
-export default function CategoriesSection({ category, setCategory }) {
+export default function CategoriesSection() {
+  const navigate = useNavigate()
   const sliderRef = useRef(null)
   const drag = useRef({ active: false, startX: 0, scrollLeft: 0, moved: false })
 
@@ -22,8 +24,7 @@ export default function CategoriesSection({ category, setCategory }) {
 
   const select = (id) => {
     if (drag.current.moved) return // drag ke baad accidental click ignore karo
-    setCategory(id)
-    window.location.hash = 'deals'
+    navigate(id === 'all' ? '/shop' : `/category/${id}`)
   }
 
   return (
@@ -39,14 +40,14 @@ export default function CategoriesSection({ category, setCategory }) {
           onMouseLeave={stopDrag}
         >
           <li>
-            <button className={`category-card ${category === 'all' ? 'active' : ''}`} onClick={() => select('all')}>
+            <button className="category-card" onClick={() => select('all')}>
               <span className="category-circle icon"><FiGrid /></span>
               <span className="category-name">All Products</span>
             </button>
           </li>
           {categories.map((c) => (
             <li key={c.id}>
-              <button className={`category-card ${category === c.id ? 'active' : ''}`} onClick={() => select(c.id)}>
+              <button className="category-card" onClick={() => select(c.id)}>
                 <span className="category-circle">
                   <img src={c.image} alt="" loading="lazy" draggable="false" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = PLACEHOLDER }} />
                 </span>

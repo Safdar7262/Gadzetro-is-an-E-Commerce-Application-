@@ -4,3 +4,26 @@
 .reset-btn:hover { border-color: var(--blue); color: var(--blue); }
 .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 22px; }
 .empty-state { background: #fff; border-radius: var(--radius); padding: 48px 20px; text-align: center; display: grid; gap: 16px; justify-items: center; color: var(--muted); font-size: 1.05rem; }
+
+/* ---- Mobile: homepage products side me slide hote hain (swipe), chhote cards, agla card thoda dikhta hai ---- */
+@media (max-width: 700px) {
+  .product-grid.home-slider {
+    display: flex; gap: 12px; overflow-x: auto;
+    margin-inline: -4vw; padding: 4px 4vw 14px; scroll-padding-inline: 4vw;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .product-grid.home-slider::-webkit-scrollbar { display: none; }
+  .product-grid.home-slider > .product-card { flex: 0 0 42vw; min-width: 0; max-width: 190px; scroll-snap-align: start; padding: 10px; gap: 6px; }
+  .product-grid.home-slider > .product-card:hover { transform: none; }
+  .home-slider .discount-badge { top: 8px; left: 8px; font-size: 0.68rem; padding: 3px 8px; }
+  .home-slider .product-image { padding: 8px; }
+  .home-slider .product-name { font-size: 0.82rem; min-height: 2.7em; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .home-slider .ui-rating { font-size: 0.75rem; gap: 4px; flex-wrap: wrap; }
+  .home-slider .ui-rating-count { display: none; }
+  .home-slider .ui-rating svg { width: 11px; height: 11px; }
+  .home-slider .product-price { flex-wrap: wrap; gap: 2px 8px; }
+  .home-slider .product-price strong { font-size: 1.02rem; }
+  .home-slider .product-price s { font-size: 0.78rem; }
+  .home-slider .add-btn { padding: 8px; font-size: 0.82rem; }
+}

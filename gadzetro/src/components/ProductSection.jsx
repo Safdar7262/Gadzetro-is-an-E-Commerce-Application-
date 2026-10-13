@@ -1,45 +1,22 @@
-import ProductCard from './ProductCard.jsx'
-import { products } from '../data/products.js'
-import { categories } from '../data/categories.js'
+// 
+import { Link } from 'react-router-dom'
+import ProductCard from './products/ProductCard.jsx'
+import { products } from '../data/catalog/products.js'
 import '../styles/ProductSection.css'
 
-export default function ProductSection({ category, setCategory, searchQuery, setSearchQuery }) {
-  const query = searchQuery.trim().toLowerCase()
-  const visible = products.filter(
-    (p) => (category === 'all' || p.category === category) && p.name.toLowerCase().includes(query)
-  )
-  const filtersActive = category !== 'all' || query !== ''
-  const categoryName = categories.find((c) => c.id === category)?.name
+const deals = products.filter((p) => p.status === 'active' && p.isFeatured).slice(0, 8)
 
-  const resetFilters = () => {
-    setCategory('all')
-    setSearchQuery('')
-  }
-
+export default function ProductSection() {
   return (
     <section id="deals" className="section product-section">
       <div className="container">
         <div className="section-head">
           <h2 className="section-title">Today&apos;s Best Deals</h2>
-          {filtersActive && (
-            <button className="reset-btn" onClick={resetFilters}>
-              Clear filters ✕
-            </button>
-          )}
+          <Link to="/deals" className="reset-btn">View all deals →</Link>
         </div>
-
-        {visible.length > 0 ? (
-          <div className="product-grid">
-            {visible.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        ) : (
-          <div className="empty-state" role="status">
-            <p>No products found{query ? ` for "${searchQuery}"` : ''}{categoryName ? ` in ${categoryName}` : ''}.</p>
-            <button className="btn btn-primary" onClick={resetFilters}>Show all products</button>
-          </div>
-        )}
+        <div className="product-grid home-slider">
+          {deals.map((product) => <ProductCard key={product.id} product={product} />)}
+        </div>
       </div>
     </section>
   )

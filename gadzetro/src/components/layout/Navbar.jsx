@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FiSearch, FiHeart, FiUser, FiShoppingCart, FiMapPin, FiMenu, FiX } from 'react-icons/fi'
 import useCart from '../../hooks/useCart.js'
 import useWishlist from '../../hooks/useWishlist.js'
+import useAuth from '../../hooks/useAuth.js'
 import { categories } from '../../data/catalog/categories.js'
 import '../../styles/Navbar.css' // reuses the homepage navbar styles so every page looks the same
 
@@ -20,6 +21,7 @@ const navLinks = [
 export default function Navbar() {
   const { cartCount } = useCart()
   const { wishlistCount } = useWishlist()
+  const { user, isAuthenticated } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -66,7 +68,9 @@ export default function Navbar() {
             <FiHeart />
             {wishlistCount > 0 && <span className="cart-count">{wishlistCount}</span>}
           </Link>
-          <Link to="/account" className="action-item" aria-label="Account"><FiUser /></Link>
+          <Link to={isAuthenticated ? '/account' : '/login'} className="action-item track" aria-label={isAuthenticated ? 'My account' : 'Log in'}>
+  <FiUser /><span>{isAuthenticated ? user.name.split(' ')[0] : 'Login'}</span>
+</Link>
           <Link to="/cart" className="action-item cart" aria-label={`Shopping cart, ${cartCount} items`}>
             <FiShoppingCart />
             <span className="cart-count">{cartCount}</span>

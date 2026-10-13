@@ -20,7 +20,7 @@ export default function LoginForm({ adminMode = false, onSuccess }) {
   const onSubmit = async (values) => {
     setError('')
     try {
-      const user = await login(values.email, values.password, values.remember)
+      const user = await login(values.email, values.password, adminMode ? false : values.remember) // admin is never remembered
       if (adminMode && user.role !== 'admin') {
         logout()
         setError('This account does not have admin access (demo check).')
@@ -38,7 +38,7 @@ export default function LoginForm({ adminMode = false, onSuccess }) {
       <Input label="Email" type="email" autoComplete="email" error={errors.email?.message} {...register('email')} />
       <PasswordInput label="Password" autoComplete="current-password" error={errors.password?.message} {...register('password')} />
       <div className="auth-row">
-        <label className="filter-option"><input type="checkbox" {...register('remember')} /> Remember me</label>
+        {adminMode ? <span /> : <label className="filter-option"><input type="checkbox" {...register('remember')} /> Remember me</label>}
         {!adminMode && <Link to="/forgot-password">Forgot password?</Link>}
       </div>
       <Button type="submit" size="lg" className="full" loading={isSubmitting}>{isSubmitting ? 'Logging in...' : adminMode ? 'Log in to admin' : 'Log in'}</Button>

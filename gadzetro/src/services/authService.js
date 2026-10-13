@@ -55,17 +55,40 @@ export const requestPasswordReset = () => respond({ simulated: true })
 export const resetPassword = () => respond({ simulated: true })
 
 // ----- session helpers (the AuthContext uses these) -----
+// export function readSession() {
+//   const saved = read(localStorage, SESSION_KEY) || read(sessionStorage, SESSION_KEY)
+//   if (!saved?.id) return null
+//   const fresh = readUsers().find((u) => u.id === saved.id) // always use the latest stored profile
+//   return fresh ? toPublicUser(fresh) : null
+// }
+// export function persistSession(user, remember) {
+//   const [keep, other] = remember ? [localStorage, sessionStorage] : [sessionStorage, localStorage]
+//   write(keep, SESSION_KEY, { id: user.id })
+//   try { other.removeItem(SESSION_KEY) } catch { /* ignore */ }
+// }
+// export function clearSession() {
+//   try { localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
+// }
+
+
 export function readSession() {
-  const saved = read(localStorage, SESSION_KEY) || read(sessionStorage, SESSION_KEY)
+  const inThisTab = read(sessionStorage, SESSION_KEY)
+  const remembered = read(localStorage, SESSION_KEY)
+  const saved = inThisTab?.id ? inThisTab : remembered
   if (!saved?.id) return null
   const fresh = readUsers().find((u) => u.id === saved.id) // always use the latest stored profile
-  return fresh ? toPublicUser(fresh) : null
+  if (!fresh) return null
+  // An admin must log in again in every new browser tab, so an old "remembered" admin session is ignored.
+  if (fresh.role === 'admin' && saved === remembered) {
+    try { localStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
+    return null
+  }
+  return toPublicUser(fresh)
 }
 export function persistSession(user, remember) {
-  const [keep, other] = remember ? [localStorage, sessionStorage] : [sessionStorage, localStorage]
+  // Admin sessions are never "remembered": they end when the browser tab is closed.
+  const keepForever = remember && user.role !== 'admin'
+  const [keep, other] = keepForever ? [localStorage, sessionStorage] : [sessionStorage, localStorage]
   write(keep, SESSION_KEY, { id: user.id })
   try { other.removeItem(SESSION_KEY) } catch { /* ignore */ }
-}
-export function clearSession() {
-  try { localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
 }

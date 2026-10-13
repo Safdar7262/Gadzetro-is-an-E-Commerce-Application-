@@ -89,3 +89,14 @@ export const reviewSchema = z.object({
   title: z.string().trim().min(3, 'Title must be at least 3 characters').max(80, 'Keep the title under 80 characters'),
   text: z.string().trim().min(10, 'Write at least 10 characters').max(1000, 'Keep the review under 1000 characters'),
 })
+
+
+// ---------- Phase 5: contact + newsletter ----------
+export const contactSchema = z.object({
+  name: required('Name'),
+  email: emailSchema,
+  subject: z.string().trim().min(3, 'Subject must be at least 3 characters').max(100, 'Keep the subject under 100 characters'),
+  message: z.string().trim().min(10, 'Message must be at least 10 characters').max(1000, 'Keep the message under 1000 characters'),
+})
+
+export const newsletterSchema = z.object({ email: emailSchema })

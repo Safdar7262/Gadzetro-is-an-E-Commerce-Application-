@@ -1,5 +1,5 @@
-.footer { background: #070d1d; color: #b8c2db; }
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 32px; padding: 52px 0 36px; }
+.footer { background: #070d1d; color: #b8c2db;border-radius: 15px; }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 32px; padding: 22px 0 36px; }
 .footer .brand { color: #fff; margin-bottom: 14px; }
 .footer-about { font-size: 0.93rem; max-width: 36ch; }
 .footer h4 { color: #fff; margin-bottom: 14px; font-size: 1rem; }

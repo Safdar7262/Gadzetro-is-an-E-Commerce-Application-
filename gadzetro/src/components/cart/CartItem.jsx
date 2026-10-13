@@ -27,7 +27,7 @@ export default function CartItem({ item, wished, onIncrease, onDecrease, onRemov
       </div>
       <div className="cart-item-side">
         <div className="qty" role="group" aria-label={`Quantity for ${item.name}`}>
-          <button type="button" onClick={onDecrease} disabled={item.qty <= 1} aria-label="Decrease quantity">−</button>
+          <button type="button" onClick={onDecrease} aria-label={item.qty <= 1 ? 'Remove item' : 'Decrease quantity'}>−</button>
           <span aria-live="polite">{item.qty}</span>
           <button type="button" onClick={onIncrease} disabled={unavailable || item.qty >= maxQty} aria-label="Increase quantity">+</button>
         </div>

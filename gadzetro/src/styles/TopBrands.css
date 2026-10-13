@@ -1,6 +1,6 @@
 .brand-marquee {
   overflow: hidden;
-  padding: 10px 0 18px;
+  padding: 5px 0 10px;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
@@ -14,14 +14,14 @@
 .brand-item {
   flex: 0 0 auto;
   width: 200px;
-  height: 90px;
+  height: 60px;
   margin-right: 18px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  /* border: 1px solid var(--border);*/
+  border-radius: var(--radius); 
   background: #fff;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: 0.02em;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
@@ -34,8 +34,8 @@
 }
 
 @media (max-width: 600px) {
-  .brand-item { width: 150px; height: 72px; font-size: 1.2rem; }
-  .brand-track { animation-duration: 22s; }
+  .brand-item { width: 150px; height: 42px; font-size: 1.4rem; }
+  .brand-track { animation-duration: 20s; }
 }
 
 /* Jin users ne device me "reduce motion" on rakha hai unke liye animation band */

@@ -1,10 +1,13 @@
+// 
+
+import { Link } from 'react-router-dom'
 import { brands } from '../data/brands.js'
 import '../styles/TopBrands.css'
 
 function BrandItem({ brand }) {
   return (
     <li className="brand-item" style={{ color: brand.color }}>
-      <span>{brand.name}</span>
+      <Link to={`/brand/${brand.id}`}>{brand.name}</Link>
     </li>
   )
 }

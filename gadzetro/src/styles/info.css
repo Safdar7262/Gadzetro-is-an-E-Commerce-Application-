@@ -1,0 +1,34 @@
+.info-hero { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 48px 0; }
+.info-hero h1 { font-size: 2.2rem; margin-bottom: 6px; }
+.info-hero p { color: #c3cde6; }
+.info .deal-note { margin: 0 0 20px; }
+.info-section { margin-bottom: 28px; display: grid; gap: 10px; }
+.info-section h2 { font-size: 1.3rem; }
+.info-section p { max-width: 75ch; }
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.value-card { background: var(--bg); border-radius: var(--radius); padding: 20px; display: grid; gap: 6px; }
+.value-card h3 { font-size: 1.05rem; color: var(--blue-dark); }
+
+.contact-layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+.contact-details ul { display: grid; gap: 12px; }
+.contact-details li { display: flex; gap: 10px; align-items: flex-start; }
+.contact-details svg { margin-top: 4px; color: var(--blue); flex-shrink: 0; }
+
+.faq-group { margin-bottom: 28px; }
+.faq-group h2 { font-size: 1.25rem; margin-bottom: 10px; }
+.faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; background: #fff; }
+.faq-item summary { cursor: pointer; padding: 14px 18px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--blue); }
+.faq-item[open] summary::after { content: '−'; }
+.faq-item p { padding: 0 18px 16px; color: var(--muted); }
+
+.policy { max-width: 860px; }
+.policy-notice { background: #fff7e6; border: 1px solid #fde3a7; color: #7a4b00; padding: 12px 16px; border-radius: 10px; margin-bottom: 24px; font-size: 0.92rem; }
+.policy-list { display: grid; gap: 8px; padding-left: 22px; list-style: disc; max-width: 75ch; }
+
+@media (max-width: 800px) {
+  .contact-layout { grid-template-columns: 1fr; }
+  .info-hero h1 { font-size: 1.7rem; }
+}

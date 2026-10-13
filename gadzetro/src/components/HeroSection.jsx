@@ -1,5 +1,6 @@
 import { FiTruck, FiRefreshCw, FiLock, FiHeadphones } from 'react-icons/fi'
 import '../styles/HeroSection.css'
+import { Link } from 'react-router-dom'
 
 const perks = [
   { icon: <FiTruck />, text: 'Free Shipping' },
@@ -17,7 +18,7 @@ export default function HeroSection() {
           <h1>Smart Gadgets for Smarter Living.</h1>
           <p className="hero-desc">Explore the latest gadgets with amazing features and unbeatable prices.</p>
           <div className="hero-buttons">
-            <a href="#deals" className="btn btn-primary">Shop Now</a>
+            <Link to="/shop" className="btn btn-primary">Shop Now</Link>
             <a href="#categories" className="btn btn-outline">Explore Categories</a>
           </div>
         </div>
@@ -26,11 +27,11 @@ export default function HeroSection() {
           <img src="/images/hero/hero-gadgets.png" alt="Smartphone, smartwatch, headphones and speaker" />
         </div>
       </div>
-      <ul className="container hero-perks">
+      {/* <ul className="container hero-perks">
         {perks.map((perk) => (
           <li key={perk.text}>{perk.icon}<span>{perk.text}</span></li>
         ))}
-      </ul>
+      </ul> */}
     </section>
   )
 }

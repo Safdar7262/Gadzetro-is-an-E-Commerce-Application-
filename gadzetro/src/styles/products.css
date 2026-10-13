@@ -81,12 +81,12 @@ a.product-image { display: block; position: relative; }
 .review h3 { font-size: 1rem; }
 
 /* Brands + deals */
-.brand-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; margin-top: 8px; }
-.brand-card { display: grid; gap: 4px; justify-items: center; padding: 26px 12px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; transition: 0.25s; }
+.brand-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 18px; margin-top: 4px; }
+.brand-card { display: grid; gap: 4px; justify-items: center; padding: 16px 10px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; transition: 0.25s; }
 .brand-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: currentColor; }
 .brand-card strong { font-size: 1.4rem; font-weight: 800; }
 .brand-card span { color: var(--muted); font-size: 0.85rem; }
-.brand-hero { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; border-radius: var(--radius); padding: 32px; margin-bottom: 24px; }
+.brand-hero { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; border-radius: var(--radius); padding: 20px; margin-bottom: 12px; }
 .brand-hero h1 { font-size: 2rem; }
 .brand-hero p { color: #c3cde6; }
 .deal-note { background: #fff7e6; border: 1px solid #fde3a7; color: #7a4b00; padding: 10px 14px; border-radius: 10px; font-size: 0.9rem; }

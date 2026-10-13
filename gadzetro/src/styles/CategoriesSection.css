@@ -1,5 +1,5 @@
 .category-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; }
-.category-card { width: 100%; background: none; border: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 4px; }
+.category-card { width: 100%; background: none; border: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: px; }
 .category-circle { width: 76px; height: 76px; border-radius: 50%; background: var(--bg); border: 2px solid var(--border); display: grid; place-items: center; overflow: hidden; transition: 0.25s; font-size: 1.6rem; color: var(--blue); }
 .category-circle img { width: 100%; height: 100%; object-fit: cover; }
 .category-name { font-weight: 600; font-size: 0.82rem; text-align: center; line-height: 1.25; }
@@ -9,18 +9,18 @@
 
 /* Tablet + Mobile: single line, swipe/slide left-right */
 @media (max-width: 1000px) {
-  .category-grid { display: flex; gap: 14px; overflow-x: auto; padding: 8px 4px 12px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .category-grid { display: flex; gap: 14px; overflow-x: auto; padding: 6px 2px 10px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .category-grid::-webkit-scrollbar { display: none; }
   .category-grid li { flex: 0 0 auto; width: 84px; scroll-snap-align: start; }
 }
 @media (max-width: 600px) {
-  .category-circle { width: 68px; height: 68px; }
+  .category-circle { width: 48px; height: 48px; }
   .category-grid li { width: 76px; }
 }
 
 
 @media (max-width: 1000px) {
-  .category-grid { display: flex; gap: 14px; overflow-x: auto; padding: 8px 4px 12px; cursor: grab; user-select: none; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .category-grid { display: flex; gap: 14px; overflow-x: auto; padding: 6px 2px 10px; cursor: grab; user-select: none; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .category-grid:active { cursor: grabbing; }
   .category-grid::-webkit-scrollbar { display: none; }
   .category-grid li { flex: 0 0 auto; width: 84px; }

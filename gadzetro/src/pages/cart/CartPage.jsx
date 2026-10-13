@@ -59,6 +59,7 @@ export default function CartPage() {
               onRemove={() => cart.removeFromCart(item.id)} onSave={() => cart.saveForLater(item.id)} onMoveToWishlist={() => moveToWishlist(item)} />
           ))}
           <Button to="/shop" variant="ghost">← Continue shopping</Button>
+                    
           {savedSection}
         </div>
         <aside>
