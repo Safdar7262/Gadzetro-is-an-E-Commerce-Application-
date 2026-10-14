@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { coupons } from '../../data/coupons.js'
+import { getCoupons } from '../../data/coupons.js'
 import Button from '../common/Button.jsx'
 
 export default function CouponBox({ appliedCoupon, couponState, onApply, onRemove }) {
@@ -34,7 +34,7 @@ export default function CouponBox({ appliedCoupon, couponState, onApply, onRemov
       <details>
         <summary>Demo coupon codes</summary>
         <ul className="coupon-list">
-          {coupons.map((c) => (
+          {getCoupons().filter((c) => c.active !== false).map((c) => (
             <li key={c.code}><button type="button" className="chip" onClick={() => submit(c.code)}>{c.code}</button> <span className="muted small">{c.description}</span></li>
           ))}
         </ul>

@@ -1,12 +1,13 @@
 import { useMemo } from 'react'
-import HeroSection from '../../components/HeroSection.jsx' // your original sections, reused as they are
-import BenefitsSection from '../../components/BenefitsSection.jsx'
-import TopBrands from '../../components/TopBrands.jsx'
+import HeroSection from '../../components/home/HeroSection.jsx'
+import BenefitsSection from '../../components/home/BenefitsSection.jsx'
+import TopBrands from '../../components/home/TopBrands.jsx'
 import HomeCategories from '../../components/home/HomeCategories.jsx'
 import ProductRail from '../../components/home/ProductRail.jsx'
 import PromoBanners from '../../components/home/PromoBanners.jsx'
 import useCatalog from '../../hooks/useCatalog.js'
 import { calcDiscountPercent } from '../../utils/currency.js'
+import BannerSlider from "../../components/home/BannerSlider.jsx";
 
 export default function HomePage() {
   const { products, loading, error } = useCatalog()
@@ -23,12 +24,14 @@ export default function HomePage() {
 
   return (
     <>
+    <BannerSlider />
       <HeroSection />
       <HomeCategories />
       <ProductRail id="deals" alt title="Today's Best Deals" products={rails.deals} viewAllTo="/deals" loading={loading} error={error} />
       <PromoBanners />
       <ProductRail title="Featured Products" products={rails.featured} viewAllTo="/shop" loading={loading} error={error} />
       <ProductRail alt title="New Arrivals" products={rails.newest} viewAllTo="/shop?sort=newest" loading={loading} error={error} />
+      <BannerSlider />
       <ProductRail title="Best Sellers" products={rails.bestSellers} viewAllTo="/shop?sort=popularity" loading={loading} error={error} />
       <BenefitsSection />
       <TopBrands />

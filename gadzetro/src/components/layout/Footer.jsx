@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
+import { storeSettings } from '../../data/storeSettings.js'
 import '../../styles/Footer.css' // reuses the homepage footer styles
 
 const quickLinks = [['Home', '/'], ['Shop', '/shop'], ['Best Sellers', '/shop?sort=popularity'], ['New Arrivals', '/shop?sort=newest'], ['Deals', '/deals']]
@@ -18,8 +19,8 @@ export default function Footer() {
       <div className="container footer-grid">
         <div>
           <Link to="/" className="brand">
-            <img src="/images/logo/logo.png" alt="" width="36" height="36" />
-            <span>Gadzetro</span>
+                        <img src={storeSettings.logo} alt="" width="36" height="36" />
+            <span>{storeSettings.storeName}</span>
           </Link>
           <p className="footer-about">Gadzetro is your one-stop store for smartphones, laptops, smartwatches, audio gear, cameras and accessories, with genuine products at fair prices.</p>
         </div>
@@ -34,7 +35,7 @@ export default function Footer() {
         <div>
           <h4>Contact Information</h4>
           <ul className="contact-list">
-            <li><FiMail /> support@gadzetro.example</li>
+            <li><FiMail /> {storeSettings.contactEmail}</li>
             <li><FiPhone /> +91 00000 00000</li>
             <li><FiMapPin /> Your Store Address, City, State</li>
           </ul>
@@ -46,7 +47,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="container">
-          <p>© {new Date().getFullYear()} Gadzetro. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {storeSettings.storeName}. All rights reserved.</p>
           <p><Link to="/privacy-policy">Privacy Policy</Link><Link to="/terms">Terms and Conditions</Link></p>
         </div>
       </div>

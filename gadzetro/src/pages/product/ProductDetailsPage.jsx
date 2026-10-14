@@ -136,17 +136,21 @@ export default function ProductDetailsPage() {
         </div>
       </div>
 
-      <section className="pd-section">
-        <h2>Highlights</h2>
-        <ul className="highlights">{product.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
-      </section>
+            {product.highlights.length > 0 && (
+        <section className="pd-section">
+          <h2>Highlights</h2>
+          <ul className="highlights">{product.highlights.map((h) => <li key={h}>{h}</li>)}</ul>
+        </section>
+      )}
 
-      <section className="pd-section">
-        <h2>Specifications</h2>
-        <table className="specs">
-          <tbody>{Object.entries(product.specifications).map(([k, v]) => <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
-        </table>
-      </section>
+      {Object.keys(product.specifications).length > 0 && (
+        <section className="pd-section">
+          <h2>Specifications</h2>
+          <table className="specs">
+            <tbody>{Object.entries(product.specifications).map(([k, v]) => <tr key={k}><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
+          </table>
+        </section>
+      )}
 
       <section className="pd-section">
         <h2>Customer reviews</h2>

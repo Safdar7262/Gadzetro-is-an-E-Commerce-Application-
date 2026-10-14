@@ -24,6 +24,7 @@ export const getStoredUsers = () => readUsers().map(toPublicUser)
 export async function loginUser({ email, password }) {
   const user = readUsers().find((u) => u.email.toLowerCase() === String(email).trim().toLowerCase())
   if (!user || user.passwordHash !== hashPassword(user.id, password)) return fail('Invalid email or password.', 401)
+      if (user.blocked) return fail('This account has been disabled. Please contact support.', 403)
   return respond({ user: toPublicUser(user), token: null }) // token stays null: no real JWT in the mock phase
 }
 
@@ -76,8 +77,10 @@ export function readSession() {
   const remembered = read(localStorage, SESSION_KEY)
   const saved = inThisTab?.id ? inThisTab : remembered
   if (!saved?.id) return null
+
   const fresh = readUsers().find((u) => u.id === saved.id) // always use the latest stored profile
-  if (!fresh) return null
+  if (!fresh || fresh.blocked) return null
+
   // An admin must log in again in every new browser tab, so an old "remembered" admin session is ignored.
   if (fresh.role === 'admin' && saved === remembered) {
     try { localStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
@@ -91,4 +94,26 @@ export function persistSession(user, remember) {
   const [keep, other] = keepForever ? [localStorage, sessionStorage] : [sessionStorage, localStorage]
   write(keep, SESSION_KEY, { id: user.id })
   try { other.removeItem(SESSION_KEY) } catch { /* ignore */ }
+}
+export function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); sessionStorage.removeItem(SESSION_KEY) } catch { /* ignore */ }
+}
+
+// ----- admin helpers (used by adminService) -----
+export function setUserBlocked(userId, blocked) {
+  const users = readUsers()
+  const user = users.find((u) => u.id === userId)
+  if (!user) return fail('User not found.', 404)
+  if (user.role === 'admin') return fail('Admin accounts cannot be blocked here.', 409)
+  saveUsers(users.map((u) => (u.id === userId ? { ...u, blocked } : u)))
+  return respond(toPublicUser({ ...user, blocked }))
+}
+
+export function deleteUser(userId) {
+  const users = readUsers()
+  const user = users.find((u) => u.id === userId)
+  if (!user) return fail('User not found.', 404)
+  if (user.role === 'admin') return fail('Admin accounts cannot be deleted here.', 409)
+  saveUsers(users.filter((u) => u.id !== userId))
+  return respond({ deleted: true })
 }

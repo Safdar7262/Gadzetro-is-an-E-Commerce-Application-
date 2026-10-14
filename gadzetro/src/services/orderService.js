@@ -22,6 +22,8 @@ const upsert = (order) => {
 
 export const CANCELLABLE_STATUSES = ['Placed', 'Processing']
 export const canCancel = (order) => CANCELLABLE_STATUSES.includes(order.status)
+// Which status an order may move to next (used by the admin order page)
+export const NEXT_STATUSES = { Placed: ['Processing', 'Cancelled'], Processing: ['Shipped', 'Cancelled'], Shipped: ['Delivered'], Delivered: [], Cancelled: [] }
 export const belongsToUser = (order, user) =>
   !!user && (order.userId === user.id || order.customer?.email?.toLowerCase() === user.email.toLowerCase())
 

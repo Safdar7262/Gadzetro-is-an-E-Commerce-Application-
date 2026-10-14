@@ -1,9 +1,57 @@
-.newsletter { background: linear-gradient(135deg, var(--navy), var(--navy-2)); color: #fff; padding: 64px 0; text-align: center; }
-.newsletter h2 { font-size: 2rem; margin-bottom: 8px; }
-.newsletter-inner > p { color: #c3cde6; max-width: 56ch; margin: 0 auto 24px; }
-.newsletter form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.newsletter input { flex: 1 1 280px; max-width: 420px; padding: 12px 20px; border-radius: 999px; border: 2px solid transparent; background: #fff; color: var(--text); }
+.newsletter {
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  color: #fff;
+  padding: 12px 4px;
+  border-radius: 15px 15px 0 0;
+}
+
+/* 2 columns: left = text, right = form */
+.newsletter-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  column-gap: 48px;
+  align-items: center;
+  text-align: left;
+}
+
+.newsletter h2 { font-size: 2rem; margin: 0 0 8px; grid-column: 1; }
+.newsletter-inner > p { color: #c3cde6; max-width: none; margin: 0; grid-column: 1; }
+
+/* form right side me, input + button ek hi row me */
+.newsletter form {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+}
+.newsletter input {
+  flex: 1 1 auto;
+  max-width: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background: #fff;
+  color: var(--text);
+}
 .newsletter input:focus { outline: none; border-color: var(--blue); }
-.form-message { min-height: 1.5em; margin-top: 14px; font-weight: 600; }
+.newsletter form button { flex-shrink: 0; }
+
+.form-message { min-height: 1.5em; margin-top: 14px; font-weight: 600; grid-column: 2; }
 .form-message.success { color: #6ee7a0; }
 .form-message.error { color: #ff9b9b; }
+
+/* mobile / tablet: wapas upar-neeche (centered) */
+@media (max-width: 768px) {
+  .newsletter-inner { grid-template-columns: 1fr; row-gap: 16px; text-align: center; }
+  .newsletter h2,
+  .newsletter-inner > p,
+  .newsletter form,
+  .form-message { grid-column: 1; grid-row: auto; }
+  .newsletter-inner > p { margin: 0 auto; max-width: 56ch; }
+  .newsletter form { flex-wrap: wrap; justify-content: center; }
+  .newsletter input { flex: 1 1 240px; }
+}

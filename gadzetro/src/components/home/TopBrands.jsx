@@ -1,8 +1,8 @@
 // 
 
 import { Link } from 'react-router-dom'
-import { brands } from '../data/brands.js'
-import '../styles/TopBrands.css'
+import { brands } from '../../data/brands.js'
+import '../../styles/TopBrands.css'
 
 function BrandItem({ brand }) {
   return (

@@ -1,5 +1,5 @@
 import { FiCheckCircle, FiTag, FiTruck, FiRefreshCw, FiShield } from 'react-icons/fi'
-import '../styles/BenefitsSection.css'
+import '../../styles/BenefitsSection.css'
 
 const benefits = [
   { icon: <FiCheckCircle />, title: '100% Original', text: 'Genuine Products' },

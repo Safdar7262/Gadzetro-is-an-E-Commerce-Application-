@@ -1,5 +1,5 @@
 import { FiTruck, FiRefreshCw, FiLock, FiHeadphones } from 'react-icons/fi'
-import '../styles/HeroSection.css'
+import '../../styles/HeroSection.css'
 import { Link } from 'react-router-dom'
 
 const perks = [

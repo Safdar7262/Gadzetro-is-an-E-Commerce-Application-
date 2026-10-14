@@ -100,3 +100,66 @@ export const contactSchema = z.object({
 })
 
 export const newsletterSchema = z.object({ email: emailSchema })
+
+
+// ---------- Phase 6: admin forms ----------
+const count = (label, min, max, extra = '') =>
+  z.coerce.number({ invalid_type_error: 'Enter a number' }).int(`${label} must be a whole number`).min(min, `${label} must be at least ${min}`).max(max, `${label} must be at most ${max}${extra}`)
+
+export const categorySchema = z.object({
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(40, 'Keep the name under 40 characters'),
+  description: z.string().trim().min(5, 'Add a short description (at least 5 characters)').max(200, 'Keep it under 200 characters'),
+  image: z.string().trim().optional(),
+  banner: z.string().trim().optional(),
+})
+
+export const brandSchema = z.object({
+  name: z.string().trim().min(2, 'Name must be at least 2 characters').max(40, 'Keep the name under 40 characters'),
+  description: z.string().trim().min(5, 'Add a short description (at least 5 characters)').max(200, 'Keep it under 200 characters'),
+  color: z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Pick a valid colour'),
+})
+
+export const couponSchema = z
+  .object({
+    code: z.string().trim().toUpperCase().regex(/^[A-Z0-9]{3,20}$/, 'Use 3 to 20 letters or numbers (no spaces)'),
+    type: z.enum(['percent', 'flat', 'freeShipping']),
+    value: z.coerce.number({ invalid_type_error: 'Enter a number' }).min(0, 'Value cannot be negative'),
+    maxDiscount: z.coerce.number({ invalid_type_error: 'Enter a number' }).min(0, 'Cannot be negative'),
+    minSubtotal: count('Minimum order', 0, 1000000),
+    description: z.string().trim().min(5, 'Add a short description (at least 5 characters)').max(120, 'Keep it under 120 characters'),
+    active: z.boolean(),
+  })
+  .superRefine((d, ctx) => {
+    if (d.type === 'percent' && (d.value < 1 || d.value > 90)) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['value'], message: 'Percent must be between 1 and 90' })
+    if (d.type === 'flat' && d.value < 1) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ['value'], message: 'Flat discount must be at least ₹1' })
+  })
+
+export const productSchema = z.object({
+  name: z.string().trim().min(3, 'Product name must be at least 3 characters').max(120, 'Keep the name under 120 characters'),
+  sku: z.string().trim().min(3, 'SKU must be at least 3 characters').max(30, 'Keep the SKU under 30 characters').regex(/^[A-Za-z0-9_-]+$/, 'Use letters, numbers, - or _ only'),
+  description: z.string().trim().min(10, 'Description must be at least 10 characters').max(1000, 'Keep it under 1000 characters'),
+  categoryId: z.string().min(1, 'Select a category'),
+  brandId: z.string().min(1, 'Select a brand'),
+  mrp: count('Price', 1, 1000000),
+  discount: count('Discount', 0, 90),
+  stock: count('Stock', 0, 100000),
+  status: z.enum(['active', 'draft']),
+  image: z.string().min(1, 'Choose or upload an image'),
+  highlights: z.string().optional(),
+  specs: z.string().optional(),
+  isFeatured: z.boolean(),
+  isBestSeller: z.boolean(),
+  isNewArrival: z.boolean(),
+})
+
+
+// ---------- Phase 6 (part B): settings ----------
+export const settingsSchema = z.object({
+  storeName: z.string().trim().min(2, 'Store name must be at least 2 characters').max(40, 'Keep the store name under 40 characters'),
+  contactEmail: emailSchema,
+  logo: z.string().trim().min(1, 'Choose a logo or enter a logo path'),
+  shippingCharge: count('Shipping charge', 0, 5000),
+  expressShippingCharge: count('Express charge', 0, 10000),
+  freeShippingThreshold: count('Free shipping limit', 0, 1000000),
+  taxPercent: z.coerce.number({ invalid_type_error: 'Enter a number' }).min(0, 'Tax cannot be negative').max(40, 'Tax cannot be more than 40%'),
+})

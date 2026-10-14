@@ -1,3 +1,5 @@
+import { loadFromStorage } from '../../utils/storage.js'
+
 const brand = (id, name, color) => ({
   id, slug: id, name, color, banner: null,
   description: `Shop ${name} gadgets on Gadzetro. (Sample description for demo purposes.)`,
@@ -17,3 +19,8 @@ export const brands = [
   brand('fire-boltt', 'Fire-Boltt', '#1e6bff'),
   brand('gadzetro', 'Gadzetro', '#1e6bff'),
 ]
+
+
+// Admin edits are saved in localStorage and loaded here, so every page sees the same data.
+const saved = loadFromStorage('catalog:brands', null)
+if (Array.isArray(saved) && saved.length > 0) brands.splice(0, brands.length, ...saved)

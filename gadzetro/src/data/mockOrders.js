@@ -1,6 +1,6 @@
 // DEMO orders for the demo customer so the account pages have content. Built from the shared catalog.
 import { products } from './catalog/products.js'
-import { findCoupon } from './coupons.js'
+import { defaultCoupons } from './coupons.js'
 import { calculateTotals } from '../utils/pricing.js'
 
 export const ORDER_STEPS = ['Placed', 'Processing', 'Shipped', 'Delivered']
@@ -11,7 +11,7 @@ function makeOrder({ id, placedAt, status, lines, paymentMethod, couponCode = nu
     const p = products.find((x) => x.id === productId)
     return { productId, slug: p.slug, name: p.name, image: p.images[0], price: p.price, qty }
   })
-  const totals = calculateTotals(items, couponCode ? findCoupon(couponCode) : null, 'standard')
+  const totals = calculateTotals(items, couponCode ? defaultCoupons.find((c) => c.code === couponCode) : null, 'standard')
   const start = new Date(placedAt).getTime()
   return {
     id, userId: 'u-customer', createdAt: new Date(start).toISOString(), status,

@@ -2,6 +2,7 @@
 // The 6 homepage products keep their original ids/prices, so cart items from the homepage match this catalog.
 // All names, prices, specs and reviews are SAMPLE data for demonstration only.
 import { products as homeProducts } from '../products.js'
+import { loadFromStorage } from '../../utils/storage.js'
 
 const slugify = (text) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
 
@@ -46,6 +47,7 @@ const gallery = (img) => [img, img.replace('.jpg', '-2.jpg'), img.replace('.jpg'
 const build = (p) => ({
   id: p.id,
   slug: slugify(p.name),
+  sku: `GZ-${String(p.id).padStart(4, '0')}`,
   name: p.name,
   description: `${p.name}. ${BLURB[p.categoryId]} (Sample description for demo purposes.)`,
   brandId: p.brandId,
@@ -108,3 +110,8 @@ const fromRows = rows.map(([id, name, brandId, categoryId, price, originalPrice,
 )
 
 export const products = [...fromHome, ...fromRows]
+
+
+// Admin edits are saved in localStorage and loaded here, so every page sees the same data.
+const savedProducts = loadFromStorage('catalog:products', null)
+if (Array.isArray(savedProducts) && savedProducts.length > 0) products.splice(0, products.length, ...savedProducts)

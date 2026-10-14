@@ -54,8 +54,9 @@ export function CartStoreProvider({ children }) {
   useEffect(() => { if (loadedUid === uid) saveToStorage(`savedForLater:${uid}`, savedIds) }, [savedIds, uid, loadedUid])
   useEffect(() => { if (loadedUid === uid) saveToStorage(`coupon:${uid}`, couponCode) }, [couponCode, uid, loadedUid])
 
-  const items = useMemo(
-    () => lines.map((l) => { const p = byId(l.id); return { ...p, qty: Math.max(1, Math.min(l.qty, limitFor(p))) } }),
+   const items = useMemo(
+    // A product deleted by the admin is skipped instead of crashing the cart
+    () => lines.map((l) => { const p = byId(l.id); return p ? { ...p, qty: Math.max(1, Math.min(l.qty, limitFor(p))) } : null }).filter(Boolean),
     [lines]
   )
   const savedItems = useMemo(() => savedIds.map(byId).filter(Boolean), [savedIds])

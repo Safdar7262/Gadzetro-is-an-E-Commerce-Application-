@@ -12,9 +12,11 @@ export default function PromoBanners() {
           <div className="promo-text">
             <h3>{b.heading}</h3>
             <p>{b.description}</p>
+          </div>
+          <div className="promo-media">
+            <img src={b.image} alt={b.heading} loading="lazy" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = PLACEHOLDER }} />
             <Link to={b.category === 'all' ? '/deals' : `/category/${b.category}`} className="btn btn-primary">Shop Now</Link>
           </div>
-          <img src={b.image} alt={b.heading} loading="lazy" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = PLACEHOLDER }} />
         </article>
       ))}
     </section>

@@ -1,17 +1,28 @@
-# Gadzetro - Gadget Store Homepage (React + Vite)
+# Gadzetro
 
-## Run
-```
+Gadzetro is a React and Vite e-commerce application.
+
+## Getting started
+
+```powershell
 npm install
 npm run dev
 ```
-Open http://localhost:5173
+
+Open the local URL printed by Vite (usually http://localhost:5173).
+
+Use `npm run build` to create a production build and `npm run preview` to serve it locally.
+
+## Source layout
+
+- `src/app/` - application routing and setup
+- `src/components/` - shared UI and components grouped by feature
+- `src/context/` and `src/hooks/` - application state and reusable React hooks
+- `src/data/` and `src/services/` - catalog data and application services
+- `src/pages/` - route-level pages grouped by feature
+- `src/styles/` - global and feature styles
+- `src/utils/` - shared formatting, validation, and storage helpers
 
 ## Images
-All images live in `public/images/`. The ones included are **placeholders** with the exact filenames the code expects.
-Replace a file with your own image using the same name (or change the path in `src/data/*.js`).
-Missing images automatically fall back to `public/images/placeholder.svg`.
 
-## Notes
-- Only six sample products exist (as per brief), so Smartphones/Laptops show an empty-state message. Add more items in `src/data/products.js`.
-- Cart state: `src/context/CartContext.jsx`, used via `src/hooks/useCart.js`.
+Images are served from `public/images/`. Update the corresponding image path in `src/data/` when changing an asset. Missing product images use `public/images/placeholder.svg` as a fallback.

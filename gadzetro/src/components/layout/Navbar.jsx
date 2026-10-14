@@ -4,6 +4,7 @@ import { FiSearch, FiHeart, FiUser, FiShoppingCart, FiMapPin, FiMenu, FiX } from
 import useCart from '../../hooks/useCart.js'
 import useWishlist from '../../hooks/useWishlist.js'
 import useAuth from '../../hooks/useAuth.js'
+import { storeSettings } from '../../data/storeSettings.js'
 import { categories } from '../../data/catalog/categories.js'
 import '../../styles/Navbar.css' // reuses the homepage navbar styles so every page looks the same
 
@@ -49,8 +50,8 @@ export default function Navbar() {
     <header className="navbar">
       <div className="container navbar-top">
         <Link to="/" className="brand">
-          <img src="/images/logo/logo.png" alt="" width="36" height="36" />
-          <span>Gadzetro</span>
+                    <img src={storeSettings.logo} alt="" width="36" height="36" />
+          <span>{storeSettings.storeName}</span>
         </Link>
 
         <form className="search-bar" onSubmit={handleSearch} role="search">
